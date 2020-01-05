@@ -4,13 +4,8 @@ import ReactDOM from 'react-dom';
 class Login extends React.Component {
     render() {
       return (
-        <div className="shopping-list">
-          <h1>Shopping List for</h1>
-          <ul>
-            <li>Instagram</li>
-            <li>WhatsApp</li>
-            <li>Oculus</li>
-          </ul>
+        <div className="login-container">
+         <h3>Login</h3>
         </div>
       );
     }
