@@ -26,7 +26,7 @@ class LoginCard extends React.Component {
       <div>
         <Row>
           <Col></Col>
-          <Col><Card border="danger" style={{ width: '29rem' }}>
+          <Col><Card border="success" style={{ width: '29rem' }}>
 
             <Card.Body>
               <Card.Title>
