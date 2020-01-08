@@ -1,26 +1,32 @@
-import React from "react";
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomNavbar from './components/Navbar.js'
-import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Alert from 'react-bootstrap/Alert'
-import { properties } from './resources/properties.js'
+import CustomNavbar from './components/Navbar.js';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
+import { properties } from './resources/properties.js';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import {
+  BrowserRouter as Router, Switch, Route, Link
+} from "react-router-dom";
 
 
-class Login extends React.Component {
+
+class Signup extends React.Component {
   render() {
     return (
       <div>
         <CustomNavbar />
-        <h3>{properties.loginCardHeader}</h3>
+        <h3>{properties.signUpCardHeader}</h3>
 
-        <LoginCard />
+        <SignupCard />
       </div>
     );
   }
 }
-class LoginCard extends React.Component {
+class SignupCard extends React.Component {
   render() {
     return (
       <div>
@@ -31,16 +37,49 @@ class LoginCard extends React.Component {
             <Card.Body>
               <Card.Title>
                 <Alert variant='primary'>
-                  Login to continue.
+                  Sign up 
    </Alert>
               </Card.Title>
               <Card.Text>
-                {properties.loginContent}
+                <Form>
+  <Form.Group controlId="formName">
+    <Form.Label>Name</Form.Label>
+    <Form.Control type="text" placeholder="Enter your Name" />
+    
+  </Form.Group>
+
+
+  <Form.Group controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Text className="text-muted">
+      We'll never share your email with anyone else.
+    </Form.Text>
+  </Form.Group>
+
+  <Form.Group controlId="formBasicPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" placeholder="Password" />
+  </Form.Group>
+
+  <Form.Group controlId="formBasicPasswordconfirm">
+    <Form.Label>Confirm Password</Form.Label>
+    <Form.Control type="password" placeholder="Confirm Password" />
+  </Form.Group>
+
+  <Form.Group controlId="formBasicCheckbox">
+    <Form.Check type="checkbox" label="Check me out" />
+  </Form.Group>
+  <Button variant="primary" type="submit">
+    Sign me up
+  </Button>
+</Form>
               </Card.Text>
             </Card.Body>
           </Card></Col>
           <Col></Col>
         </Row>
+
 
       </div>
 
@@ -48,4 +87,4 @@ class LoginCard extends React.Component {
   }
 }
 
-export default Login;
+export default Signup;

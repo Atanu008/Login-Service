@@ -4,6 +4,9 @@ export const properties = {
     loginContent : "Some text about your organisation.",
     loginButton : "Login in",
     userNamePlaceholder : "user name",
-    passwordPlaceholder : "password"
+    passwordPlaceholder : "password",
 
+
+    /* Sign up */
+	signUpCardHeader: "Sign up header",
 };
