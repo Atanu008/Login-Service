@@ -32,7 +32,7 @@ class SignupCard extends React.Component {
       <div>
         <Row>
           <Col></Col>
-          <Col><Card border="danger" style={{ width: '29rem' }}>
+          <Col><Card border="primary" style={{ width: '29rem' }}>
 
             <Card.Body>
               <Card.Title>

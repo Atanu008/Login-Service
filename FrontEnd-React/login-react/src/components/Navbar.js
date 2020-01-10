@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav } from "react-bootstrap";
+import { Nav,Navbar } from "react-bootstrap";
 import Container from 'react-bootstrap/Container'
 import {
   BrowserRouter as Router,
@@ -15,8 +15,10 @@ class CustomNavbar extends React.Component {
     return (
       <Router>
       <div className="login-container">
-        <Container>
-          <Nav className="justify-content-end" activeKey="/home">
+        
+        <Navbar bg="light"  sticky="top" className="justify-content-end">
+
+          <Nav  activeKey="/" >
             <Nav.Item>
               <Nav.Link href="/signup">New User Signup</Nav.Link>  
             </Nav.Item>
@@ -25,7 +27,8 @@ class CustomNavbar extends React.Component {
             </Nav.Item>
 
           </Nav>
-        </Container>
+          </Navbar>
+        
       </div>
        
       </Router>
