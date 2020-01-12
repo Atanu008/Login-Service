@@ -1,14 +1,15 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav,Navbar } from "react-bootstrap";
-import Container from 'react-bootstrap/Container'
+import Container from "react-bootstrap/Container"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import Signup from '../Signup.js';
+
+import Signup from "./Signup";
 
 class CustomNavbar extends React.Component {
   render() {
