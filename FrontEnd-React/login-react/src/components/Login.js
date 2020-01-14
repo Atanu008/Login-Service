@@ -40,23 +40,19 @@ class LoginCard extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const{userName, password} = this.state;
+    const { userName, password } = this.state;
 
-    this.setState({submitted : true})
+    this.setState({ submitted: true });
 
-    if( !(userName && password)){
-      return ;
+    if (!(userName && password)) {
+      return;
     }
   };
 
-  handleChange = (event) => {
-
-    
-  }
+  handleChange = event => {};
 
   render() {
-
-const{userName, password, submitted} = this.state;
+    const { userName, password, submitted } = this.state;
     return (
       <div>
         <Row>
@@ -77,11 +73,11 @@ const{userName, password, submitted} = this.state;
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  
-                    {submitted && !userName && (
-                      <Alert variant="danger">User Name is required</Alert>
-                    )}
-                  
+
+                  {submitted && !userName && (
+                    <Alert variant="danger">User Name is required</Alert>
+                  )}
+
                   <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
@@ -92,13 +88,15 @@ const{userName, password, submitted} = this.state;
                     />
                   </Form.Group>
 
-                    {submitted && !password && (
-                      <Alert variant="danger">Password is required</Alert>
-                    )}
+                  {submitted && !password && (
+                    <Alert variant="danger">Password is required</Alert>
+                  )}
 
-                  <Button variant="primary" type="submit">
-                    Log In
-                  </Button>
+                  <center>
+                    <Button variant="primary" type="submit">
+                      Log In
+                    </Button>
+                  </center>
                 </Form>
                 <Card.Text>{properties.loginContent}</Card.Text>
               </Card.Body>

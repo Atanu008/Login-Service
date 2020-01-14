@@ -52,6 +52,8 @@ class SignupCard extends React.Component {
     const { name, value } = event.target;
     let formErrors = this.state.formErrors;
 
+    this.setState({ submitted: false });
+
     switch (name) {
       case "firstName":
         formErrors.firstName =
@@ -136,11 +138,11 @@ class SignupCard extends React.Component {
                       />
                     </Form.Group>
 
-                    {formErrors.firstName.length > 0 && (
+                    {!submitted && formErrors.firstName.length > 0 && (
                       <Alert variant="danger">{formErrors.firstName}</Alert>
                     )}
                     {submitted && !firstName && (
-                      <Alert variant="danger">Minimum 3 Character</Alert>
+                      <Alert variant="danger">First Name Required</Alert>
                     )}
                     <Form.Group controlId="formLastName">
                       <Form.Label>Last Name</Form.Label>
