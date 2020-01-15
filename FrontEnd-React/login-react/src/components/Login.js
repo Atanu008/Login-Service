@@ -14,6 +14,7 @@ class Login extends Component {
     return (
       <div>
         <CustomNavbar />
+        <br/>
         <center><h3>{properties.loginCardHeader}</h3></center>
         <br/>
         <LoginCard />
@@ -50,16 +51,16 @@ class LoginCard extends Component {
 
   handleChange = event => {console.log(event.target.id);};
   handleBlur = event =>{
-    let source = event.target.id;
-    let val = event.target.value;
-    if(source === "userName" ){
-      if(val.length <3)
+    
+    const {name, value} = event.target;
+    if(name === "userName" ){
+      if(value.length <3)
         this.setState({ userError:  "username is either empty or less than 3 characters long"});
       else
         this.setState({ userError:  ""});
     }
-    else if(source === "password"){
-      if(val.length <8)
+    else if(name === "password"){
+      if(value.length <8)
         this.setState({ passError:  "password is either empty or less than 8 characters long"});
       else
         this.setState({ passError:  ""});

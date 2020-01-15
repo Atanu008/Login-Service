@@ -16,8 +16,9 @@ class Signup extends React.Component {
     return (
       <div>
         <CustomNavbar />
+        <br/>
         <center><h3>{properties.signUpCardHeader}</h3></center>
-
+        <br/>
         <SignupCard />
       </div>
     );
@@ -52,12 +53,7 @@ class SignupCard extends React.Component {
   
   
 
-  validateEmail = (email) =>{
-    var regEmail= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if(regEmail.test(email))
-      return true;
-    return false;
-  }
+
 
   handleBlur(event) {
     const { name, value } = event.target;
