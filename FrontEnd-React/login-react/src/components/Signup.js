@@ -9,13 +9,14 @@ import { properties } from "../resources/properties.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import './validations.js';
 
 class Signup extends React.Component {
   render() {
     return (
       <div>
         <CustomNavbar />
-        <h3>{properties.signUpCardHeader}</h3>
+        <center><h3>{properties.signUpCardHeader}</h3></center>
 
         <SignupCard />
       </div>
@@ -45,10 +46,20 @@ class SignupCard extends React.Component {
       }
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
-  handleChange(event) {
+  
+  
+
+  validateEmail = (email) =>{
+    var regEmail= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(regEmail.test(email))
+      return true;
+    return false;
+  }
+
+  handleBlur(event) {
     const { name, value } = event.target;
     let formErrors = this.state.formErrors;
 
@@ -57,16 +68,23 @@ class SignupCard extends React.Component {
     switch (name) {
       case "firstName":
         formErrors.firstName =
-          value.length < 3 ? "Minimum 3 Character Needed" : "";
+          value.length < 3 ? "Minimum 3 Character Needed" : this.validateName(value)? "" :"Do not use space, special characters or numbers";
         break;
 
       case "lastName":
         formErrors.lastName =
-          value.length < 3 ? "Minimum 3 Character Needed" : "";
+          value.length < 3 ? "Minimum 3 Character Needed" : this.validateName(value)? "" :"Do not use space, special characters or numbers";
         break;
 
       case "email":
-        formErrors.email = value.length < 3 ? "Minimum 3 Character Needed" : "";
+        formErrors.email = this.validateEmail(value) ? "" : "Email not in correct format";
+        break;
+      
+      case "password":
+        formErrors.password = value.length <8 ? "Minimum 8 Character Needed" : "";
+        break;
+      case "confirmPassword":
+        formErrors.confirmPassword = (value === this.state.password ) ? "" : "Password and confirm password does not match";
         break;
     }
 
@@ -76,7 +94,7 @@ class SignupCard extends React.Component {
         [name]: value
       },
       () => {
-        console.log("Hello " + this.state.email); // Synchronous Call Back function. Thsi would be called after the state change
+        console.log("Hello "); // Synchronous Call Back function. Thsi would be called after the state change
       }
     );
   }
@@ -96,8 +114,11 @@ class SignupCard extends React.Component {
     } = this.state;
 
     // Return If nothing is filled
-    if (!(firstName && lastName && email && password && confirmPassword)) {
-      return;
+    if (!(firstName && lastName && email && password && confirmPassword) || (formErrors.firstName || formErrors.lastName
+      || formErrors.email || formErrors.password || formErrors.confirmPassword) ) {
+        console.log("There is an issue with the filled form. Exiting");
+        alert('Unable to submit, please check for errors');
+        return;
     }
 
     //this.setState({});
@@ -134,27 +155,25 @@ class SignupCard extends React.Component {
                         type="text"
                         placeholder="Enter your First Name"
                         name="firstName"
-                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
                       />
                     </Form.Group>
 
-                    {!submitted && formErrors.firstName.length > 0 && (
+                    {formErrors.firstName && (
                       <Alert variant="danger">{formErrors.firstName}</Alert>
                     )}
-                    {submitted && !firstName && (
-                      <Alert variant="danger">First Name Required</Alert>
-                    )}
+                    
                     <Form.Group controlId="formLastName">
                       <Form.Label>Last Name</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Enter your Last Name"
                         name="lastName"
-                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
                       />
                     </Form.Group>
 
-                    {formErrors.lastName.length > 0 && (
+                    {formErrors.lastName && (
                       <Alert variant="danger">{formErrors.lastName}</Alert>
                     )}
 
@@ -164,14 +183,14 @@ class SignupCard extends React.Component {
                         type="email"
                         placeholder="Enter email"
                         name="email"
-                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
                       />
                       <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                       </Form.Text>
                     </Form.Group>
 
-                    {formErrors.email.length > 0 && (
+                    {formErrors.email && (
                       <Alert variant="danger">{formErrors.email}</Alert>
                     )}
 
@@ -181,11 +200,11 @@ class SignupCard extends React.Component {
                         type="password"
                         placeholder="Password"
                         name="password"
-                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
                       />
                     </Form.Group>
 
-                    {formErrors.password.length > 0 && (
+                    {formErrors.password && (
                       <Alert variant="danger">{formErrors.password}</Alert>
                     )}
 
@@ -195,32 +214,23 @@ class SignupCard extends React.Component {
                         type="password"
                         placeholder="Confirm Password"
                         name="confirmPassword"
-                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
                       />
                     </Form.Group>
 
-                    {formErrors.confirmPassword.length > 0 && (
+                    {formErrors.confirmPassword && (
                       <Alert variant="danger">
                         {formErrors.confirmPassword}
                       </Alert>
                     )}
 
-                    <Form.Group controlId="formBasicCheckbox">
-                      <Form.Check
-                        type="checkbox"
-                        label="Check me out"
-                        name="checkout"
-                        onChange={this.handleChange}
-                      />
-                    </Form.Group>
+                    
 
-                    {formErrors.checkout.length > 0 && (
-                      <Alert variant="danger">{formErrors.checkout}</Alert>
-                    )}
-
-                    <Button variant="primary" type="submit">
+                    
+                    <center><Button variant="primary" type="submit">
                       Sign me up
-                    </Button>
+                    </Button></center>
+                  
                   </Form>
                 </Card.Text>
               </Card.Body>

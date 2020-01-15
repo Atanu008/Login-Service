@@ -14,7 +14,8 @@ class Login extends Component {
     return (
       <div>
         <CustomNavbar />
-        <h3>{properties.loginCardHeader}</h3>
+        <center><h3>{properties.loginCardHeader}</h3></center>
+        <br/>
         <LoginCard />
       </div>
     );
@@ -30,29 +31,52 @@ class LoginCard extends Component {
       password: "",
       submitted: false,
       loading: false,
-      formErrors: {
-        userName: "",
-        password: ""
-      }
+      userError: "",
+      passError: ""
     };
   }
 
   handleSubmit = event => {
     event.preventDefault();
-
-    const { userName, password } = this.state;
-
-    this.setState({ submitted: true });
-
-    if (!(userName && password)) {
+    const { userName, password,userError,passError } = this.state;
+    if(!userName || !password || userError || passError){
+      console.log("Error in filling out form");
       return;
     }
+    this.setState({ submitted: true });
+
+    
   };
 
-  handleChange = event => {};
+  handleChange = event => {console.log(event.target.id);};
+  handleBlur = event =>{
+    let source = event.target.id;
+    let val = event.target.value;
+    if(source === "userName" ){
+      if(val.length <3)
+        this.setState({ userError:  "username is either empty or less than 3 characters long"});
+      else
+        this.setState({ userError:  ""});
+    }
+    else if(source === "password"){
+      if(val.length <8)
+        this.setState({ passError:  "password is either empty or less than 8 characters long"});
+      else
+        this.setState({ passError:  ""});
+    }
+    
+    
+  };
 
   render() {
-    const { userName, password, submitted } = this.state;
+    const { 
+      userName,
+      password,
+      submitted,
+      loading,
+      userError,
+      passError
+     } = this.state;
     return (
       <div>
         <Row>
@@ -60,9 +84,7 @@ class LoginCard extends Component {
           <Col>
             <Card border="success" style={{ width: "29rem" }}>
               <Card.Body>
-                <Card.Title>
-                  <Alert variant="primary">Login to continue.</Alert>
-                </Card.Title>
+                
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="userName">
                     <Form.Label>User Name</Form.Label>
@@ -70,12 +92,12 @@ class LoginCard extends Component {
                       type="text"
                       placeholder="Enter User Name"
                       name="userName"
-                      onChange={this.handleChange}
+                      onBlur={this.handleBlur}
                     />
                   </Form.Group>
 
-                  {submitted && !userName && (
-                    <Alert variant="danger">User Name is required</Alert>
+                  {userError  && (
+                    <Alert variant="danger">{this.state.userError}</Alert>
                   )}
 
                   <Form.Group controlId="password">
@@ -84,21 +106,23 @@ class LoginCard extends Component {
                       type="password"
                       placeholder="Enter your First Name"
                       name="password"
-                      onChange={this.handleChange}
+                      onBlur={this.handleBlur}
                     />
                   </Form.Group>
 
-                  {submitted && !password && (
-                    <Alert variant="danger">Password is required</Alert>
+                  {passError && (
+                    <Alert variant="danger">{this.state.passError}</Alert>
                   )}
 
                   <center>
-                    <Button variant="primary" type="submit">
+                    
+                    <Button variant="primary" type="submit" >
                       Log In
                     </Button>
+                  
                   </center>
                 </Form>
-                <Card.Text>{properties.loginContent}</Card.Text>
+                
               </Card.Body>
             </Card>
           </Col>
