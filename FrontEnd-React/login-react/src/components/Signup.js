@@ -9,16 +9,15 @@ import { properties } from "../resources/properties.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import './validations.js';
+
 
 class Signup extends React.Component {
   render() {
     return (
       <div>
         <CustomNavbar />
-        <br/>
         <center><h3>{properties.signUpCardHeader}</h3></center>
-        <br/>
+
         <SignupCard />
       </div>
     );
@@ -52,8 +51,22 @@ class SignupCard extends React.Component {
 
   
   
+validateName = (name) => {
+    
+  var regName = /^[A-Za-z]+$/;
+  if(!regName.test(name)){
+    return false;
+  }
+  return true;
+}
 
 
+  validateEmail = (email) =>{
+    var regEmail= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(regEmail.test(email))
+      return true;
+    return false;
+  }
 
   handleBlur(event) {
     const { name, value } = event.target;
