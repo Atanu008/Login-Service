@@ -92,8 +92,9 @@ validateName = (name) => {
       case "password":
         formErrors.password = value.length <8 ? "Minimum 8 Character Needed" : "";
         break;
+
       case "confirmPassword":
-        formErrors.confirmPassword = (value === this.state.password ) ? "" : "Password and confirm password does not match";
+        formErrors.confirmPassword = (value === this.state.password ) ? ((value !== "") ? "" : "Password is empty") : "Password and confirm password does not match";
         break;
     }
 
@@ -126,9 +127,10 @@ validateName = (name) => {
     if (!(firstName && lastName && email && password && confirmPassword) || (formErrors.firstName || formErrors.lastName
       || formErrors.email || formErrors.password || formErrors.confirmPassword) ) {
         console.log("There is an issue with the filled form. Exiting");
-        alert('Unable to submit, please check for errors');
+        //alert('Unable to submit, please check for errors');
         return;
     }
+    alert("Done");
 
     //this.setState({});
   };
@@ -168,8 +170,8 @@ validateName = (name) => {
                       />
                     </Form.Group>
 
-                    {formErrors.firstName && (
-                      <Alert variant="danger">{formErrors.firstName}</Alert>
+                    {(formErrors.firstName || (submitted && !firstName)) && (
+                      <Alert variant="danger">{(!formErrors.firstName && "Minimum 3 Character Needed" || formErrors.lastName)}</Alert>
                     )}
                     
                     <Form.Group controlId="formLastName">
@@ -182,8 +184,8 @@ validateName = (name) => {
                       />
                     </Form.Group>
 
-                    {formErrors.lastName && (
-                      <Alert variant="danger">{formErrors.lastName}</Alert>
+                    {(formErrors.lastName || (submitted && !lastName)) && (
+  <Alert variant="danger">{(!formErrors.lastName && "Minimum 3 Character Needed" || formErrors.lastName)}</Alert>
                     )}
 
                     <Form.Group controlId="formBasicEmail">
@@ -199,8 +201,8 @@ validateName = (name) => {
                       </Form.Text>
                     </Form.Group>
 
-                    {formErrors.email && (
-                      <Alert variant="danger">{formErrors.email}</Alert>
+                    {(formErrors.email || (submitted && !email)) && (
+                      <Alert variant="danger">{(!formErrors.email && "Email is not provided" || formErrors.email)}</Alert>
                     )}
 
                     <Form.Group controlId="formBasicPassword">
@@ -213,8 +215,8 @@ validateName = (name) => {
                       />
                     </Form.Group>
 
-                    {formErrors.password && (
-                      <Alert variant="danger">{formErrors.password}</Alert>
+                    {(formErrors.password || (submitted && !password)) && (
+                      <Alert variant="danger">{(!formErrors.password && "Password is not provider" || formErrors.password)}</Alert>
                     )}
 
                     <Form.Group controlId="formBasicPasswordconfirm">
@@ -227,9 +229,9 @@ validateName = (name) => {
                       />
                     </Form.Group>
 
-                    {formErrors.confirmPassword && (
+                    {(formErrors.confirmPassword || (submitted && !confirmPassword))&& (
                       <Alert variant="danger">
-                        {formErrors.confirmPassword}
+                        {(!formErrors.confirmPassword && "Password is not provided" || formErrors.confirmPassword)}
                       </Alert>
                     )}
 
