@@ -2,6 +2,7 @@ package com.login.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,12 +10,12 @@ import javax.persistence.Table;
 @Table(name = "USER")
 public class User {
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 	@Id
 	private String email;
-	private String firstName;
-	private String lastName;
+	private String firstname;
+	private String lastname;
 	
 	public long getId() {
 		return id;
@@ -29,16 +30,16 @@ public class User {
 		this.email = email;
 	}
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String firstname) {
+		this.firstname = firstname;
 	}
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 	
 	public User() {

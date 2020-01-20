@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.login.model.User;
 import com.login.repository.UserRepository;
 
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -22,9 +23,23 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
-	public String getUser() {
+	public User getUser(String email) {
 		
-		return "Riju";
+		/*
+		 * User user = new User(); user.setEmail("inkl@gmail.com");
+		 * user.setFirstName("Riju"); user.setLastName("Mondal");
+		 */
+	
+		User user = repo.findByEmail(email);
+		return user;
+		
+		//return "Riju";
+	}
+
+	@Override
+	public String getUser() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
  
