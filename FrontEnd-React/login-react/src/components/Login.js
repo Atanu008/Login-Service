@@ -35,36 +35,60 @@ class LoginCard extends Component {
       userError: "",
       passError: ""
     };
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { userName, password,userError,passError } = this.state;
-    if(!userName || !password || userError || passError){
+    this.setState({ submitted: true });
+    const { userName,
+            password,
+            submitted,
+            loading,
+            userError,
+            passError } = this.state;
+    
+    if(!userName  || !password || userError || passError){
       console.log("Error in filling out form");
       return;
     }
-    this.setState({ submitted: true });
+    alert("Logging in");
+    //this.setState({ submitted: true });
 
     
   };
 
-  handleChange = event => {console.log(event.target.id);};
-  handleBlur = event =>{
+  handleBlur(event){
     
     const {name, value} = event.target;
+    let userError = this.state.userError;
+    let passError = this.state.passError;
+
+    this.setState({submitted : false});
+    
     if(name === "userName" ){
       if(value.length <3)
-        this.setState({ userError:  "username is either empty or less than 3 characters long"});
+         userError =   "username is either empty or less than 3 characters long";
       else
-        this.setState({ userError:  ""});
+        userError =  "";
     }
     else if(name === "password"){
-      if(value.length <8)
-        this.setState({ passError:  "password is either empty or less than 8 characters long"});
+      if(value.length <3)
+         passError =   "password is empty or less than 8 characters";
       else
-        this.setState({ passError:  ""});
+         passError =  "";
     }
+    
+    this.setState(
+      {
+        userError,
+        passError,
+        [name] : value
+      },
+      () => {
+        console.log(""); 
+      }
+    );
     
     
   };
@@ -97,9 +121,10 @@ class LoginCard extends Component {
                     />
                   </Form.Group>
 
-                  {userError  && (
-                    <Alert variant="danger">{this.state.userError}</Alert>
-                  )}
+                  {(userError || (submitted && !userName)) && (
+  <Alert variant="danger">{"Minimum 3 Character Needed"}</Alert>
+                    )}
+
 
                   <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
@@ -111,8 +136,8 @@ class LoginCard extends Component {
                     />
                   </Form.Group>
 
-                  {passError && (
-                    <Alert variant="danger">{this.state.passError}</Alert>
+                  {(passError || (submitted && !password)) && (
+                    <Alert variant="danger">{"password is either empty or less than 8 characters long"}</Alert>
                   )}
 
                   <center>
