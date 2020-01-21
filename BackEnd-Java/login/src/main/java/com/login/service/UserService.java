@@ -6,10 +6,8 @@ import com.login.model.User;
 
 @Service
 public interface UserService {
-	
+
 	void save(User user);
-	
-	String getUser();
 
 	User getUser(String email);
 

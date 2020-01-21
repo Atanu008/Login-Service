@@ -11,40 +11,57 @@ import javax.persistence.Table;
 public class User {
 
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private long id;
 	@Id
+	private long id;
 	private String email;
 	private String firstname;
 	private String lastname;
-	
+
+
+	public User() {
+
+	}
+
 	public long getId() {
 		return id;
 	}
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getFirstName() {
+
+
+	public String getFirstname() {
 		return firstname;
 	}
-	public void setFirstName(String firstname) {
+
+
+	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	public String getLastName() {
+
+
+	public String getLastname() {
 		return lastname;
 	}
-	public void setLastName(String lastname) {
+
+
+	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
-	public User() {
-		
-	}
-	
-	
+
+
+
+
 }

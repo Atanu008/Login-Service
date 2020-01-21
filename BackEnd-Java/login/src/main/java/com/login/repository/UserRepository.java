@@ -7,7 +7,7 @@ import com.login.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
-	
+
 	User findByEmail(String email);
 
 }
