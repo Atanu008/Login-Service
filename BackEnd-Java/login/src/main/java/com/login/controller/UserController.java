@@ -1,6 +1,7 @@
 package com.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +24,9 @@ public class UserController {
 
 	}
 
-	@PostMapping("/user")
+	@PostMapping(path ="/user", consumes = MediaType.APPLICATION_JSON_VALUE )
 	public User registerUser(@RequestBody User user) {
 
-		System.out.println("your Name is "+user.getFirstname());
 		userService.save(user);
 
 		return user;
