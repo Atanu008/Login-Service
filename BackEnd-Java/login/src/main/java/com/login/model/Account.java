@@ -12,100 +12,126 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "Account")
+public class Account {
 
 	//@GeneratedValue(strategy = GenerationType.AUTO)
+	//@Id
 	@Column(name = "id")
 	private long id;
-	
+
 	@Id
-	@Column(name = "user_name")
-	private String userName;
-	
-	@Column(name = "password")
-	private String password;
-	
-	@Column(name = "enabled")
-	private String enabled;
-	
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+
 	@Column(name = "date_created")
 	private Date DateCreated;
-	
+
 	@Column(name = "date_updated")
 	private Date DateUpdated;
-	
-	@JsonIgnore // Important for ignoring recursive relation
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_name", referencedColumnName = "email")
-	private Account account;
 
+	@OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private User user;
 	
-	public User() {
-		
+	public Account() {
+
 	}
-	
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	public long getId() {
 		return id;
 	}
+
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+
+
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+
+
+
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getEnabled() {
-		return enabled;
+
+
+
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
+
 
 	public Date getDateCreated() {
 		return DateCreated;
 	}
 
+
 	public void setDateCreated(Date dateCreated) {
 		DateCreated = dateCreated;
 	}
+
 
 	public Date getDateUpdated() {
 		return DateUpdated;
 	}
 
+
 	public void setDateUpdated(Date dateUpdated) {
 		DateUpdated = dateUpdated;
 	}
 
-	public Account getAccount() {
-		return account;
-	}
 
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	
-	
-	
-	
+
+
+
+
 }

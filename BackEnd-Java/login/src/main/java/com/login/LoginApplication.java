@@ -1,8 +1,8 @@
 package com.login;
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 
 //@ComponentScan("com")
@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@EnableJpaRepositories({"com.login.repository"})
 @SpringBootApplication
 public class LoginApplication {
-
 
 	public static void main(String[] args) {
 		

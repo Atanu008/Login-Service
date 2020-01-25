@@ -8,30 +8,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.login.model.User;
+import com.login.dto.AccountDto;
+import com.login.model.Account;
+import com.login.service.RegistrationService;
 import com.login.service.UserService;
 
 @RestController
-public class UserController {
+public class RegistrationController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	RegistrationService registrationService;
+	
+	
 
 	@GetMapping("/user/{email}")
-	public User getUser(@PathVariable String email) {
+	public Account getUser(@PathVariable String email) {
 
-		return userService.getUser(email);
+		//return userService.getUser(email);
+		return null;
 
 	}
 
 	@PostMapping(path ="/user", consumes = MediaType.APPLICATION_JSON_VALUE )
-	public User registerUser(@RequestBody User user) {
+	public Account registerUser(@RequestBody AccountDto accountDto) {
 
-		userService.save(user);
-
-		return user;
-
-
+		return registrationService.save(accountDto);
 
 	}
 
