@@ -9,5 +9,6 @@ import com.login.model.Account;
 public interface RegistrationService {
 	
 	Account save(AccountDto accountDto);
+	Account getAccountInfo(String email);
 
 }

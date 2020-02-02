@@ -1,13 +1,12 @@
 package com.login;
 
+import com.login.utils.Utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
-//@ComponentScan("com")
-//@ComponentScan({"com.login.controller","com.login.service", "com.login.model"})
-//@EnableJpaRepositories({"com.login.repository"})
+
 @SpringBootApplication
 public class LoginApplication {
 

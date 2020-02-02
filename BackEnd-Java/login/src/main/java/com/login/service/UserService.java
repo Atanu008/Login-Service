@@ -9,7 +9,9 @@ import com.login.model.User;
 public interface UserService {
 
 	void save(User user);
-
 	User getUser(String userName);
+	boolean authenticate(String email, String password);
+
+
 
 }

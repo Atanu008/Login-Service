@@ -27,8 +27,11 @@ public class User {
 	@Column(name = "user_name")
 	private String userName;
 	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "salt")
+	private String passwordSalt;
+
+	@Column(name = "hash")
+	private String passwordHash;
 	
 	@Column(name = "enabled")
 	private String enabled;
@@ -48,7 +51,23 @@ public class User {
 	public User() {
 		
 	}
-	
+
+	public String getPasswordSalt() {
+		return passwordSalt;
+	}
+
+	public void setPasswordSalt(String passwordSalt) {
+		this.passwordSalt = passwordSalt;
+	}
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -63,14 +82,6 @@ public class User {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEnabled() {

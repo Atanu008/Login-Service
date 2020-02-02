@@ -1,5 +1,6 @@
-package com.login.controller;
+package com.login.controller.v1;
 
+import com.login.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +25,19 @@ public class RegistrationController {
 	
 	
 
-	@GetMapping("/user/{email}")
+	@GetMapping("/v1/user/{email}")
 	public Account getUser(@PathVariable String email) {
-
-		//return userService.getUser(email);
-		return null;
-
+		return registrationService.getAccountInfo(email);
 	}
 
-	@PostMapping(path ="/user", consumes = MediaType.APPLICATION_JSON_VALUE )
+	@PostMapping(path ="/v1/user", consumes = MediaType.APPLICATION_JSON_VALUE )
 	public Account registerUser(@RequestBody AccountDto accountDto) {
-
 		return registrationService.save(accountDto);
+	}
+
+	@PostMapping(path = "/v1/authenticate",consumes = MediaType.APPLICATION_JSON_VALUE)
+	public boolean authenticateUser(@RequestBody UserDto userDto){
+		return userService.authenticate(userDto.getEmail(),userDto.getPassword());
 
 	}
 
