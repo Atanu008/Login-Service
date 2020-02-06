@@ -21,5 +21,5 @@ Running the Application
 
 
 
-#Swagger 
+# Swagger
 Swagger API documentation is available at {BASE_URL}/swagger-ui.html. For eg http://localhost:9090/swagger-ui.html
