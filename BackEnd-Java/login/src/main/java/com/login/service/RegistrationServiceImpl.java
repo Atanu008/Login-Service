@@ -1,5 +1,6 @@
 package com.login.service;
 
+import com.login.configurations.LoginFilter;
 import com.login.configurations.password.BcryptPasswordEncoderImpl;
 import com.login.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.login.repository.AccountRepository;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService{
@@ -21,9 +23,11 @@ public class RegistrationServiceImpl implements RegistrationService{
 
 	@Autowired
 	BcryptPasswordEncoderImpl passwordEncoder;
+
+	private final static Logger LOGGER = Logger.getLogger(RegistrationServiceImpl.class.getName());
 	
 	public Account save(AccountDto accountDto) {
-		
+		LOGGER.info("Saving new User and Account [started]");
 		Account account = new Account();
 		User user = new User();
 		
@@ -42,6 +46,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 		account.setUser(user);
 		user.setAccount(account);
 		accountRepository.save(account);
+		LOGGER.info("Saving new User and Account [completed]");
 		return account;
 		
 	}
