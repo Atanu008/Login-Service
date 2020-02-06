@@ -17,3 +17,9 @@ Running the Application
 3. restart IDE for changes to take place
 4. create database 'login' in Mysql (root)
 5. Start Springboot application , make sure spring.jpa.hibernate.ddl-auto = create for the first time in application.properties file
+
+
+
+
+#Swagger 
+Swagger API documentation is available at {BASE_URL}/swagger-ui.html. For eg http://localhost:9090/swagger-ui.html
