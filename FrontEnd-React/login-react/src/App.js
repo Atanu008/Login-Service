@@ -5,6 +5,8 @@ import Login from "./components/Login.js";
 import Signup from "./components/Signup.js";
 import About from "./components/About.js";
 import { NoMatchFound } from "./components/NoMatchFound";
+
+import  SampleHomePage  from "./components/SampleHomePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
           <Route path="/login" component={Login} exact />
           <Route path="/signup" component={Signup} />
           <Route path="/about" component={About} />
+          <Route path="/homepage" component={SampleHomePage} />
           <Route component={NoMatchFound} />
         </Switch>
       </Router>
